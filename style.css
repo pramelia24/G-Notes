@@ -1,0 +1,238 @@
+/* Variabel Warna Utama */
+:root {
+    --navy: #001f3f;
+    --navy-light: #003366;
+    --white: #ffffff;
+    --off-white: #f4f7f6;
+    --gray: #aaa;
+    --text-dark: #333;
+    --accent: #FFD700;     /* Kuning Emas */
+}
+
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--off-white);
+    color: var(--text-dark);
+}
+
+.hidden { display: none !important; }
+
+/* === HALAMAN IDENTITAS === */
+.identity-page {
+    background-color: var(--navy);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+.identity-page .form-card {
+    background: var(--navy-light);
+    padding: 30px;
+    border-radius: 12px;
+}
+.identity-page h1 {
+    margin-bottom: 10px;
+}
+.identity-page p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+/* === HEADER & NAVIGASI === */
+.app-bar {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.bottom-nav {
+    background-color: var(--white);
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+.nav-btn {
+    background: none; border: none;
+    color: var(--gray);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 10px;
+    flex-grow: 1; cursor: pointer;
+}
+.nav-btn .material-icons { font-size: 24px; }
+.nav-btn.active { color: var(--navy); }
+
+/* === KONTEN & HALAMAN === */
+.content {
+    padding: 80px 20px 80px 20px; /* Padding atas & bawah */
+}
+.page { display: none; }
+.page.active { display: block; }
+
+h2 {
+    color: var(--navy-light);
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--navy-light);
+}
+h3 {
+    color: var(--text-dark);
+    margin: 20px 0 10px 0;
+}
+
+/* === HALAMAN JADWAL PELAJARAN (TIMETABLE) === */
+.tabs {
+    display: flex;
+    background-color: #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+.tab-btn {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background: none;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--gray);
+    cursor: pointer;
+}
+.tab-btn.active {
+    background-color: var(--navy-light);
+    color: var(--white);
+    border-radius: 8px;
+}
+.timetable-item {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    border-left: 5px solid var(--navy);
+}
+.timetable-item h4 { color: var(--navy); }
+.timetable-item p { color: #555; }
+
+/* Dashboard: Jadwal Hari Ini */
+.timetable-today-container {
+    display: grid;
+    gap: 10px;
+}
+
+/* === HALAMAN DETAIL MAPEL (BARU) === */
+.btn-back {
+    background: none; border: none;
+    color: var(--navy); display: flex;
+    align-items: center; font-size: 1em;
+    font-weight: bold; cursor: pointer;
+    margin-bottom: 15px;
+}
+.chart-container {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    max-width: 400px; margin: auto;
+}
+.attachment-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.gallery-item audio {
+    width: 100%;
+}
+
+/* === LAIN-LAIN (FORM, MODAL, FAB, TASK) === */
+/* ... (Sebagian besar style dari versi sebelumnya bisa dipakai di sini) ... */
+
+/* Form */
+.form-card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--navy-light); }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 10px; border: 1px solid #ccc;
+    border-radius: 4px; font-size: 1em;
+}
+.form-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.btn-primary {
+    background-color: var(--navy); color: var(--white); border: none;
+    padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+.btn-secondary {
+    background-color: var(--gray); color: var(--white); border: none;
+    padding: 10px 15px; border-radius: 4px; cursor: pointer;
+}
+
+/* Modal */
+.modal {
+    position: fixed; z-index: 200; left: 0; top: 0;
+    width: 100%; height: 100%; overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    display: none; align-items: center; justify-content: center;
+}
+.modal.show { display: flex; }
+.modal-content {
+    background-color: var(--white); margin: auto; padding: 20px;
+    border-radius: 8px; width: 90%; max-width: 500px;
+    max-height: 90vh; overflow-y: auto;
+}
+
+/* FAB */
+.fab {
+    background-color: var(--navy); color: var(--white);
+    width: 56px; height: 56px; border-radius: 50%;
+    border: none; position: fixed; bottom: 80px;
+    right: 20px; font-size: 24px; display: flex;
+    align-items: center; justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer; z-index: 99;
+}
+
+/* Task Item */
+.task-container { display: grid; gap: 15px; }
+.task-item {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.task-item.completed { text-decoration: line-through; opacity: 0.6; }
+/* ... (Sisa style task item) ... */
