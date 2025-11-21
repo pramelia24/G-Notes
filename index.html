@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AkademiPro - Asisten Anda</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <section id="page-identity" class="page identity-page">
+        <div class_form-card">
+            <h1>Selamat Datang di AkademiPro</h1>
+            <p>Harap isi identitas Anda untuk memulai.</p>
+            <form id="identity-form">
+                <div class="form-group">
+                    <label for="user-name">Nama Panggilan Anda</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-school">Nama Sekolah</label>
+                    <input type="text" id="user-school">
+                </div>
+                <button type="submit" class="btn-primary">Simpan & Mulai</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="main-app" class="hidden">
+        <header class="app-bar">
+            <h1 id="app-title">Dashboard</h1>
+        </header>
+
+        <main class="content">
+            <section id="page-home" class="page active">
+                <h2 id="welcome-message">Halo, ...!</h2>
+                
+                <h3>Jadwal Pelajaran Hari Ini</h3>
+                <div id="timetable-today" class="timetable-today-container">
+                    </div>
+
+                <h3>Tugas Hari Ini</h3>
+                <div id="task-list-today" class="task-container"></div>
+                
+                <h3>Tugas Mendatang</h3>
+                <div id="task-list-upcoming" class="task-container"></div>
+            </section>
+
+            <section id="page-timetable" class="page">
+                <h2>Jadwal Pelajaran Mingguan</h2>
+                <div class="tabs">
+                    <button class="tab-btn active" data-day="Senin">Sen</button>
+                    <button class="tab-btn" data-day="Selasa">Sel</button>
+                    <button class="tab-btn" data-day="Rabu">Rab</button>
+                    <button class="tab-btn" data-day="Kamis">Kam</button>
+                    <button class="tab-btn" data-day="Jumat">Jum</button>
+                </div>
+                <div id="timetable-content" class="timetable-content">
+                    </div>
+                <button id="show-schedule-modal" class="btn-primary">
+                    <i class="material-icons">add</i> Tambah Jadwal Pelajaran
+                </button>
+            </section>
+
+            <section id="page-subjects" class="page">
+                <h2>Mata Pelajaran</h2>
+                <div id="subject-grid" class="subject-grid-container">
+                    </div>
+                <button id="show-subject-form-btn" class="btn-primary">Tambah Mapel</button>
+                <form id="subject-form" class="form-card hidden"></form>
+            </section>
+
+            <section id="page-subject-detail" class="page">
+                <button id="back-to-subjects" class="btn-back">
+                    <i class="material-icons">arrow_back</i> Kembali
+                </button>
+                <h2 id="subject-detail-title">Nama Mapel</h2>
+                <p id="subject-detail-teacher">Nama Guru</p>
+
+                <h3>Diagram Progres Tugas</h3>
+                <div class="chart-container">
+                    <canvas id="subject-progress-chart"></canvas>
+                </div>
+
+                <h3>Penjelasan Singkat & Galeri</h3>
+                <form id="subject-info-form" class="form-card">
+                    <input type="hidden" id="subject-info-id">
+                    <div class="form-group">
+                        <label>Catatan Kunci / Penjelasan</label>
+                        <textarea id="subject-notes" rows="4" placeholder="Tulis rumus, konsep penting..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Gambar/Audio Penjelasan</label>
+                        <input type="file" id="subject-attachment-input">
+                    </div>
+                    <button type="submit" class="btn-secondary">Simpan Info Mapel</button>
+                </form>
+                <div id="subject-gallery" class="attachment-gallery">
+                    </div>
+                
+                <h3>Tugas Terkait</h3>
+                <div id="subject-detail-tasks" class="task-container"></div>
+            </section>
+        </main>
+
+        <button id="fab-add-task" class="fab">
+            <i class="material-icons">add</i>
+        </button>
+
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="page-home">
+                <i class="material-icons">home</i> <span>Home</span>
+            </button>
+            <button class="nav-btn" data-page="page-timetable">
+                <i class="material-icons">event</i> <span>Jadwal</span>
+            </button>
+            <button class="nav-btn" data-page="page-subjects">
+                <i class="material-icons">book</i> <span>Mapel</span>
+            </button>
+        </nav>
+    </div>
+
+    <div id="modal-add-task" class="modal">
+        <div class="modal-content">
+            <form id="task-form">
+                <h3 id="form-title">Tambah Tugas Baru</h3>
+                <input type="hidden" id="task-id">
+                <div class="form-group">
+                    <label for="task-title">Nama Tugas</label>
+                    <input type="text" id="task-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-subject">Mata Pelajaran</label>
+                    <select id="task-subject" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="task-deadline">Deadline</label>
+                    <input type="datetime-local" id="task-deadline" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-attachments">Lampiran Tugas (Gambar, Audio)</label>
+                    <input type="file" id="task-attachments" accept="image/*,audio/*">
+                    <div id="task-attachment-list"></div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="close-task-modal" class="btn-secondary">Batal</button>
+                    <button type="submit" class="btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-add-schedule" class="modal">
+        <div class="modal-content">
+            <form id="schedule-form">
+                <h3>Formulir Jadwal Pelajaran</h3>
+                <input type="hidden" id="schedule-id">
+                <div class="form-group">
+                    <label for="schedule-subject">Mata Pelajaran</label>
+                    <select id="schedule-subject" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="schedule-day">Hari</label>
+                    <select id="schedule-day" required>
+                        <option value="Senin">Senin</option>
+                        <option value="Selasa">Selasa</option>
+                        <option value="Rabu">Rabu</option>
+                        <option value="Kamis">Kamis</option>
+                        <option value="Jumat">Jumat</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="schedule-start-time">Jam Mulai</label>
+                    <input type="time" id="schedule-start-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="schedule-end-time">Jam Selesai</label>
+                    <input type="time" id="schedule-end-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="schedule-room">Ruang</label>
+                    <input type="text" id="schedule-room" placeholder="Misal: Lab Komputer">
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="close-schedule-modal" class="btn-secondary">Batal</button>
+                    <button type="submit" class="btn-primary">Simpan Jadwal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
